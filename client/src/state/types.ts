@@ -20,7 +20,7 @@ export interface Day {
    expenses:number,
 }
 
-export interface getKpisResponse {
+export interface GetKpisResponse {
    id: string,
    _id: string,
    __v: number,
