@@ -12,7 +12,7 @@ const ProductSchema = new Schema(
       currency: "USD",
       get: (v) => v / 100, // convert to USD , v -> value
     },
-    expenses: {
+    expense: {
       type: mongoose.Types.Currency,
       currency: "USD",
       get: (v) => v / 100, // convert to USD , v -> value
