@@ -44,6 +44,15 @@ const Row3 = () => {
             "& .MuiDataGrid-root": {
               color: palette.grey[300],
               border: "none",
+            },
+            "& .MuiDataGrid-cell": {
+              borderBottom: `1px solid ${palette.grey[800]} !important`,
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              borderBottom: `1px solid ${palette.grey[800]} !important`,
+            },
+            "& .MuiDataGrid-columnSeparator": {
+              visibility: "hidden",           
             }
           }}
         >
