@@ -177,7 +177,7 @@ const Row3 = () => {
                   ))}
                 </Pie>
               </PieChart>
-              <Typography variant='h5'>{data[0].name} </Typography>
+              <Typography variant='h5' mt={"-0.5rem"}>{data[0].name} </Typography>
             </Box>
             ))}
             
@@ -186,7 +186,23 @@ const Row3 = () => {
 
           {/* gridArea j */}
       <DashboardBox gridArea="j">
+          <BoxHeader title="Overall Summary and Explanation Data" sideText='+15%' />
+          <Box
+            height={"15px"}
+            margin={"1.25rem 1rem 0.4rem 1rem"}
+            bgcolor={palette.primary[800]}
+            borderRadius={"1rem"}
+          >
+            <Box height={"15px"} bgcolor={palette.primary[600]} borderRadius={"1rem"} width={"40%"} mb={"10px"}>
+            </Box>
+            <Typography margin={"0 1rem"} variant='h6'>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
 
+
+            </Typography>
+          </Box>
       </DashboardBox>
     </>
   )
