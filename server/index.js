@@ -5,6 +5,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import path from "path"
 
 import kpiRoutes from "./routes/kpi.js";
 import productRoutes from "./routes/product.js";
@@ -16,10 +17,15 @@ import Transaction from "./models/Transaction.js"
 
 import { kpis, products, transactions } from "./data/data.js";
 
+
 /*CONFIGURATIONS */
 dotenv.config();
 
+
+
 const app = express(); // create express app
+const __dirname = path.resolve();
+
 app.use(express.json()) // to parse json
 app.use(helmet()); // to secure headers
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" })); // to fix cors error
@@ -33,9 +39,16 @@ app.use("/kpi", kpiRoutes);
 app.use("/product", productRoutes)
 app.use("/transaction", transactionRoutes);
 
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static(path.join(__dirname, "/client/dist")));
+
+	app.get("*", (req, res) => {
+		res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+	});
+}
 
 /*MONGOOSE SETUP */
-const PORT = process.env.PORT || 9000;
+const PORT = process.env.PORT || 5000;
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
