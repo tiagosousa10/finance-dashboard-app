@@ -5,7 +5,7 @@ import { useGetKpisQuery, useGetProductsQuery, useGetTransactionsQuery } from '@
 import { Box, Typography, useTheme } from '@mui/material'
 import { DataGrid, GridCellParams } from '@mui/x-data-grid'
 import { useMemo } from 'react'
-import { Cell, Pie, PieChart } from 'recharts'
+import { Cell, Pie, PieChart, ResponsiveContainer } from 'recharts'
 
 
 
@@ -156,32 +156,53 @@ const Row3 = () => {
           {/* gridArea i */}
       <DashboardBox gridArea="i">
           <BoxHeader title="Expenses Breakdown by Category" sideText='+4%' />
-          <FlexBetween mt={"0.5rem"} gap={"0.5rem"} p="0 1rem" textAlign={"center"} >
+          <Box 
+            mt={"0.5rem"} 
+            p="0 0.5rem" 
+            display="flex" 
+            justifyContent="space-around" 
+            alignItems="center"
+            flexWrap="wrap"
+            gap="0.25rem"
+            height="calc(100% - 3rem)"
+            width="100%"
+            boxSizing="border-box"
+          >
             {pieChartData?.map((data,i) => (
-            <Box key={`${data[0].name}-${i}`}>
-              <PieChart
-                width={110}
-                height={100}
-                
-              >
-                <Pie
-                  stroke="none"
-                  data={data}
-                  innerRadius={18}
-                  outerRadius={35}
-                  paddingAngle={2}
-                  dataKey="value"
-                >
-                  {data.map((_, index) => (
-                    <Cell key={`cell-${index}`} fill={pieColors[index]} />
-                  ))}
-                </Pie>
-              </PieChart>
-              <Typography variant='h5' mt={"-0.5rem"}>{data[0].name} </Typography>
+            <Box 
+              key={`${data[0].name}-${i}`} 
+              display="flex" 
+              flexDirection="column" 
+              alignItems="center" 
+              justifyContent="center"
+              flex="1 1 0"
+              minWidth="0"
+              maxWidth="25%"
+              boxSizing="border-box"
+            >
+              <Box width="100%" height="70px" display="flex" alignItems="center" justifyContent="center" boxSizing="border-box">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      stroke="none"
+                      data={data}
+                      innerRadius={12}
+                      outerRadius={28}
+                      paddingAngle={2}
+                      dataKey="value"
+                    >
+                      {data.map((_, index) => (
+                        <Cell key={`cell-${index}`} fill={pieColors[index]} />
+                      ))}
+                    </Pie>
+                  </PieChart>
+                </ResponsiveContainer>
+              </Box>
+              <Typography variant='h5' mt={"0.25rem"} fontSize="0.7rem" textAlign="center" sx={{ wordBreak: "break-word" }}>{data[0].name} </Typography>
             </Box>
             ))}
             
-          </FlexBetween>
+          </Box>
       </DashboardBox>
 
           {/* gridArea j */}
